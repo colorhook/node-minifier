@@ -1,0 +1,45 @@
+{
+    "name": "node-minifier",
+    "version": "0.0.1",
+	"description": "a minify tool",
+    "keywords": ["minify", "js minifier", "css minifier", "image minifier", "html minifier", "css datauri"],
+    "main": "lib/minifier.js",
+    "engines": {
+        "node" : ">=0.8.0"
+    },
+	"author": "colorhook <colorhook@gmail.com>",
+	"maintainers": [{
+      "name": "colorhook",
+      "email": "colorhook@gmail.com",
+      "url": "http://colorhook.com"
+    }],
+	"bugs": {
+        "email": "colorhook@gmail.com",
+        "url": "http://github.com/colorhook/att/issues"
+    },
+    "dependencies": {
+    	"fileutil": "~1.0.0",
+        "uglify-js": "~1.2.6",
+        "csso": "~1.3.6",
+        "html-minifier": "~0.4.5",
+        "node-smushit": "~0.4.0"
+    },
+    "devDependencies":{
+        "mocha": "~1.7.4",
+        "should": "~1.2.1"
+    },
+    "scripts":{
+        "test": "mocha --require should test test/plugins"
+    },
+    "homepage": "https://github.com/colorhook/att",
+    "repository" : {
+        "type" : "git",
+        "url" : "git://github.com/colorhook/att.git"
+    },
+	"licenses": [
+        {
+            "type": "MIT",
+            "url": "http://github.com/colorhook/att/blob/master/LICENSE"
+        }
+    ]
+}
