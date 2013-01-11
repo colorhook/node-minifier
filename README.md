@@ -5,6 +5,10 @@ What is node-minifier used for
 -------
 a minifier tools for js/css/html/image
 
+µ¥Ôª²âÊÔ
+------
+[![travis build status](https://api.travis-ci.org/colorhook/node-minifier.png)](https://www.travis-ci.org/colorhook/node-minifier)
+
 Usage
 -------
 
