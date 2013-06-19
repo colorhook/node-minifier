@@ -40,6 +40,17 @@ describe('minifier is a minifier tool for frontend dev', function(){
       var matches = item.match(regexp);
       matches.should.be.ok;
     });
+
+    cases = [
+       'button{background:url(data:image/png;base64,iVB==);}',
+       'button{background:url( data:image/png;base64,iVB==) }',
+       '.list .new::after{background: url(data:image/png;base64,iVB==);}'
+    ]
+
+    cases.forEach(function(item){
+      var matches = item.match(regexp) == null;
+      matches.should.be.true;
+    });
   });
 
   it("REGEXP_IMAGE should match URL", function(){
@@ -85,9 +96,10 @@ describe('minifier is a minifier tool for frontend dev', function(){
     //默认压缩，去log，保留版权信息
     var m_content = minifier.minifyJS(content);
     var noConsole = m_content.match(/console/) == null;
+
     noConsole.should.be.ok;
 
-    noConsole = m_content.match(/\/\*![^(\*\/)]+\*\//) != null;
+    noConsole = m_content.match(/\/\*![.\s\S]+\*\//) != null;
     noConsole.should.be.ok;
     
     //设置保留log

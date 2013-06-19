@@ -1,3 +1,24 @@
+/*!
+ * Copyright aliyun.com
+ * cpmmon.css
+ * @author <a href="main
+ * @version 1-0-0
+ */
 body{
 	background: url(m.gif);
+	_color: #fff;
+	color:red;
+	+color: red;
+	*color: red;
+	color: red\0;
+	color: red\9;
+	+line-height: 25px;
+}
+
+/**
+ * @version 1-0-0
+ */
+
+.foo{
+    +line-height: 1.5;
 }

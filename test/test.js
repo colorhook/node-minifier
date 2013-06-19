@@ -1,8 +1,9 @@
-/*! 
-copyright
-*/
-var a = {
-   x: 11,
-   y: this.x,
+/*!
+ * Copyright colorhook.com
+ * @author colorhook@gmail.com
+ * @version 1-0-0
+ */
+function foo(){
+    console.log("console.log");
+    return 1+2;
 }
-console.log(a.x + a.y);
