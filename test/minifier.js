@@ -116,7 +116,9 @@ describe('minifier is a minifier tool for frontend dev', function(){
 
   it("datauri should convert the image to Base64 in css files", function(){
     var file = __dirname + "/test.css";
-    var content = minifier.datauri(fileutil.read(file), path.dirname(file));
+    var content = minifier.datauri(fileutil.read(file), {
+        input: file
+    });
     var match = content.match(/url\(\"data:.+;base64,(.+)\"\);/);
     match[1].should.be.ok;
     var base64 = fs.readFileSync(__dirname + "/m.gif").toString('base64');
