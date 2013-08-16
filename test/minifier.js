@@ -126,7 +126,7 @@ describe('minifier is a minifier tool for frontend dev', function(){
     base64.should.be.equal(match[1]);
   });
   
-  xit("optimage should optimize image locally", function(done){
+  it("optimage should optimize image locally", function(done){
     var input  = __dirname + "/test.jpg";
     var output = __dirname + "/test.min.jpg";
     minifier.optimage(input, output, function(err, data){
@@ -137,7 +137,7 @@ describe('minifier is a minifier tool for frontend dev', function(){
     });
   });
   
-  xit("smushit should optimize image by cloud server", function(done){
+  it("smushit should optimize image by cloud server", function(done){
     var input  = __dirname + "/test.jpg";
     var output = __dirname + "/test.min.jpg";
     minifier.smushit(input, output, function(err, data){
