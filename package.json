@@ -34,7 +34,7 @@
         "should": "~1.2.1"
     },
     "scripts":{
-        "test": "mocha --timeout 5000 --ignore-leaks --require should test"
+        "test": "mocha --timeout 20000 --ignore-leaks --require should test"
     },
     "homepage": "https://github.com/colorhook/att",
     "repository" : {
