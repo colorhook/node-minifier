@@ -126,9 +126,33 @@ describe('minifier is a minifier tool for frontend dev', function(){
     base64.should.be.equal(match[1]);
   });
   
-  it("optimage should optimize image locally", function(done){
+  it("optimage should optimize jpg locally", function(done){
     var input  = __dirname + "/test.jpg";
     var output = __dirname + "/test.min.jpg";
+    minifier.optimage(input, output, function(err, data){
+      console.log(data);
+      fileutil.delete(output);
+      data.should.be.a('object');
+      (data.saved > 0).should.be.ok;
+      done();
+    });
+  });
+
+  it("optimage should optimize png locally", function(done){
+    var input  = __dirname + "/test.png";
+    var output = __dirname + "/test.min.png";
+    minifier.optimage(input, output, function(err, data){
+      console.log(data);
+      fileutil.delete(output);
+      data.should.be.a('object');
+      (data.saved > 0).should.be.ok;
+      done();
+    });
+  });
+
+  it("optimage should optimize gif locally", function(done){
+    var input  = __dirname + "/test.gif";
+    var output = __dirname + "/test.min.gif";
     minifier.optimage(input, output, function(err, data){
       fileutil.delete(output);
       data.should.be.a('object');
@@ -152,6 +176,7 @@ describe('minifier is a minifier tool for frontend dev', function(){
     var input  = __dirname + "/test.jpg";
     var output = __dirname + "/test.min.jpg";
     minifier.minifyImage(input, output, function(err, data){
+      fileutil.delete(output);
       data.should.be.a('object');
       (data.saved >= 0).should.be.ok;
       done()

@@ -41,3 +41,36 @@ minifier.minifyImage('logo.png', 'logo.min.png', function(e, data){
   }
 });
 ```
+
+
+图片压缩
+---------
+`minifyImage`方法会先尝试使用`optimage`方法压缩图片，如果失败，则降级到使用`smushit`方法压缩。
+
+* `optimage` - 使用本地的压缩工具压缩。
+* `smushit` - 使用[`smush.it`](http://smush.it/) API进行压缩。
+
+
+> 压缩jpg - 使用`jpegtran`压缩jpg
+
+```js
+minifier.optimage('input.jpg', 'output.jpg', function(err, data){
+    console.log(data.saved);
+});
+```
+
+> 压缩png - 使用`optipng`, `pngcrush`, `pngquant`压缩png
+
+```js
+minifier.optimage('input.png', 'output.png', function(err, data){
+    console.log(data.saved);
+});
+```
+
+> 压缩gif - 使用`gifsicle`压缩gif
+
+```js
+minifier.optimage('input.gif', 'output.gif', function(err, data){
+    console.log(data.saved);
+});
+```
