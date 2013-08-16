@@ -31,7 +31,7 @@
         "should": "~1.2.1"
     },
     "scripts":{
-        "test": "mocha --require should test"
+        "test": "mocha --ignore-leaks --require should test"
     },
     "homepage": "https://github.com/colorhook/att",
     "repository" : {

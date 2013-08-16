@@ -4,6 +4,7 @@ var fileutil = require('fileutil');
 var minifier =  require('../lib/minifier');
 
 describe('minifier is a minifier tool for frontend dev', function(){
+  
 
   it("REGEXP_BACKGROUND should match background", function(){
     var regexp = minifier.REGEXP_BACKGROUND;
@@ -124,5 +125,36 @@ describe('minifier is a minifier tool for frontend dev', function(){
     var base64 = fs.readFileSync(__dirname + "/m.gif").toString('base64');
     base64.should.be.equal(match[1]);
   });
-
+  
+  xit("optimage should optimize image locally", function(done){
+    var input  = __dirname + "/test.jpg";
+    var output = __dirname + "/test.min.jpg";
+    minifier.optimage(input, output, function(err, data){
+      fileutil.delete(output);
+      data.should.be.a('object');
+      (data.saved > 0).should.be.ok;
+      done();
+    });
+  });
+  
+  xit("smushit should optimize image by cloud server", function(done){
+    var input  = __dirname + "/test.jpg";
+    var output = __dirname + "/test.min.jpg";
+    minifier.smushit(input, output, function(err, data){
+      fileutil.delete(output);
+      data.should.be.a('object');
+      (data.saved >= 0).should.be.ok;
+      done();
+    });
+  });
+  
+  it("minifyImage should optimize image, first by local manner, if error, then by cloud manner", function(done){
+    var input  = __dirname + "/test.jpg";
+    var output = __dirname + "/test.min.jpg";
+    minifier.minifyImage(input, output, function(err, data){
+      data.should.be.a('object');
+      (data.saved >= 0).should.be.ok;
+      done()
+    });
+  });
 });
