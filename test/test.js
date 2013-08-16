@@ -4,6 +4,11 @@
  * @version 1-0-0
  */
 function foo(){
+    var zepto = 'a';
+    var require = 'b';
+    var define = 'c';
+    var exports = 'd'
+    var $ = 1;
     console.log("console.log");
-    return 1+2;
+    return zepto + require + define + exports + $;
 }
