@@ -40,22 +40,25 @@ var minifiedJS = minifier.minifyJS(jscontent, {
 ```
 
 > 压缩CSS
+
 ```js
 var minifiedCSS = minifier.minifyCSS(csscontent);
 ```
 
 > 压缩HTML
+
 ```js
 var minifiedHTML = minifier.minifyHTML(htmlcontent);
 ```
 
 > datauri
+
 ```js
 var datauriCSS = minifier.datauri(csscontent);
 ```
 
-
 > 压缩图片
+
 ```js
 minifier.minifyImage('logo.png', 'logo.min.png', function(e, data){
   if(e){
