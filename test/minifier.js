@@ -6,7 +6,7 @@ var minifier =  require('../lib/minifier');
 describe('minifier is a minifier tool for frontend dev', function(){
   
 
-  xit("REGEXP_BACKGROUND should match background", function(){
+  it("REGEXP_BACKGROUND should match background", function(){
     var regexp = minifier.REGEXP_BACKGROUND;
     var cases = [
       'button{background:url(icon.png)}',
@@ -54,7 +54,7 @@ describe('minifier is a minifier tool for frontend dev', function(){
     });
   });
 
-  xit("REGEXP_IMAGE should match URL", function(){
+  it("REGEXP_IMAGE should match URL", function(){
     var regexp = minifier.REGEXP_IMAGE;
     var cases = [
       'button{background:url(icon.png)}',
@@ -94,29 +94,53 @@ describe('minifier is a minifier tool for frontend dev', function(){
   it('minifyJS should minify js content', function(){
     var content = fileutil.read(__dirname + "/test.js");
     
-    //ƒ¨»œ—πÀı£¨»•log£¨±£¡Ù∞Ê»®–≈œ¢
+    //ÈªòËÆ§ÂéãÁº©ÔºåÂéªlogÔºå‰øùÁïôÁâàÊùÉ‰ø°ÊÅØ
     var m_content = minifier.minifyJS(content);
     console.log(m_content);
     var noConsole = m_content.match(/console/) == null;
 
-    //noConsole.should.be.ok;
+    noConsole.should.be.ok;
 
     noConsole = m_content.match(/\/\*![.\s\S]+\*\//) != null;
     noConsole.should.be.ok;
     
-    //…Ë÷√±£¡Ùlog
-    m_content = minifier.minifyJS(content, {logTargetList:[]});
+    //ËÆæÁΩÆ‰øùÁïôlog
+    m_content = minifier.minifyJS(content, {remove:[]});
     noConsole = m_content.match(/console/) != null;
-    //noConsole.should.be.ok;
+    noConsole.should.be.ok;
     
-    //…Ë÷√»•≥˝∞Ê»®–≈œ¢
+    //ËÆæÁΩÆÂéªÈô§ÁâàÊùÉ‰ø°ÊÅØ
     m_content = minifier.minifyJS(content, {copyright:false});
     noConsole = m_content.match(/\/\*![^(\*\/)]+\*\//) == null;
     noConsole.should.be.ok;
 
   });
+  
+  it('minifyJS should keep the exports, define, require, $ keyword reserved.', function(){
+    var content = fileutil.read(__dirname + "/test.js");
+    
+    //ÈªòËÆ§‰øùÁïôdefine, exports, require, $
+    var m_content = minifier.minifyJS(content);
+    
+    var matched = m_content.match(/exports/) != null;
+    matched.should.be.ok;
+    
+    matched = m_content.match(/define/) != null;
+    matched.should.be.ok;
+    
+    matched = m_content.match(/require/) != null;
+    matched.should.be.ok;
+    
+    matched = m_content.match(/exports/) != null;
+    matched.should.be.ok;
+    
+    matched = m_content.match(/\$/) != null;
+    matched.should.be.ok;
+    
+    m_content = minifier.minifyJS(content);
+  });
 
-  xit("datauri should convert the image to Base64 in css files", function(){
+  it("datauri should convert the image to Base64 in css files", function(){
     var file = __dirname + "/test.css";
     var content = minifier.datauri(fileutil.read(file), {
         input: file
@@ -127,7 +151,7 @@ describe('minifier is a minifier tool for frontend dev', function(){
     base64.should.be.equal(match[1]);
   });
   
-  xit("optimage should optimize jpg locally", function(done){
+  it("optimage should optimize jpg locally", function(done){
     var input  = __dirname + "/test.jpg";
     var output = __dirname + "/test.min.jpg";
     minifier.optimage(input, output, function(err, data){
@@ -139,7 +163,7 @@ describe('minifier is a minifier tool for frontend dev', function(){
     });
   });
 
-  xit("optimage should optimize png locally", function(done){
+  it("optimage should optimize png locally", function(done){
     var input  = __dirname + "/test.png";
     var output = __dirname + "/test.min.png";
     minifier.optimage(input, output, function(err, data){
@@ -151,7 +175,7 @@ describe('minifier is a minifier tool for frontend dev', function(){
     });
   });
 
-  xit("optimage should optimize gif locally", function(done){
+  it("optimage should optimize gif locally", function(done){
     var input  = __dirname + "/test.gif";
     var output = __dirname + "/test.min.gif";
     minifier.optimage(input, output, function(err, data){
@@ -162,7 +186,7 @@ describe('minifier is a minifier tool for frontend dev', function(){
     });
   });
   
-  xit("smushit should optimize image by cloud server", function(done){
+  it("smushit should optimize image by cloud server", function(done){
     var input  = __dirname + "/test.jpg";
     var output = __dirname + "/test.min.jpg";
     minifier.smushit(input, output, function(err, data){
@@ -173,7 +197,7 @@ describe('minifier is a minifier tool for frontend dev', function(){
     });
   });
   
-  xit("minifyImage should optimize image, first by local manner, if error, then by cloud manner", function(done){
+  it("minifyImage should optimize image, first by local manner, if error, then by cloud manner", function(done){
     var input  = __dirname + "/test.jpg";
     var output = __dirname + "/test.min.jpg";
     minifier.minifyImage(input, output, function(err, data){
