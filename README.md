@@ -37,6 +37,12 @@ var minifiedJS = minifier.minifyJS(jscontent, {
   expect: ['onMessageFromSWF'],
   remove: ['console', 'Y.log', 'Kissy.log', 'S.log']
 });
+
+
+//默认将中文转成Unicode编码，可以通过下面的方式不转码
+this.minifyJS(jscontent, {
+  ascii_only: false
+});
 ```
 
 > 压缩CSS

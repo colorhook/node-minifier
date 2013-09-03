@@ -1,6 +1,6 @@
 {
     "name": "node-minifier",
-    "version": "0.1.0",
+    "version": "0.1.1",
 	"description": "a minify tool",
     "keywords": ["minify", "js minifier", "css minifier", "image minifier", "html minifier", "css datauri"],
     "main": "lib/minifier.js",
