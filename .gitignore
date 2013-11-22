@@ -3,3 +3,5 @@ npm-debug.log
 .svn
 .DS_Store
 .exe
+performance/assets
+performance/temp

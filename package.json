@@ -1,6 +1,6 @@
 {
     "name": "node-minifier",
-    "version": "0.1.1",
+    "version": "0.1.2",
 	"description": "a minify tool",
     "keywords": ["minify", "js minifier", "css minifier", "image minifier", "html minifier", "css datauri"],
     "main": "lib/minifier.js",
@@ -27,14 +27,15 @@
         "jpegtran-bin": "=0.1.7",
         "gifsicle": "=0.1.2",
         "node-pngcrush": "*",
-        "node-pngquant-native": "*"
+        "node-pngquant-native": "*",
+        "node-advpng": "*"
     },
     "devDependencies":{
         "mocha": "~1.7.4",
         "should": "~1.2.1"
     },
     "scripts":{
-        "test": "mocha --timeout 20000 --ignore-leaks --require should test"
+        "test": "mocha --timeout 30000 --ignore-leaks --require should test"
     },
     "homepage": "https://github.com/colorhook/att",
     "repository" : {
