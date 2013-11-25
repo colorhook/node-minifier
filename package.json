@@ -28,7 +28,7 @@
         "gifsicle": "=0.1.2",
         "node-pngcrush": "*",
         "node-pngquant-native": "*",
-        "node-advpng": "*"
+        "node-advpng": "=0.0.2"
     },
     "devDependencies":{
         "mocha": "~1.7.4",
