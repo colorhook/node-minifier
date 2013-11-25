@@ -92,7 +92,7 @@ minifier.optimage('input.jpg', 'output.jpg', function(err, data){
 });
 ```
 
-> 压缩png - 使用`optipng`, `pngcrush`, `pngquant`压缩png
+> 压缩png - 使用`optipng`, `pngcrush`, `pngquant`, `advpng`压缩png
 
 ```js
 minifier.optimage('input.png', 'output.png', function(err, data){
@@ -107,3 +107,13 @@ minifier.optimage('input.gif', 'output.gif', function(err, data){
     console.log(data.saved);
 });
 ```
+
+> 图片压缩统计
+
+| 图片类型（数量）  | 压缩前(byte) | smush.it压缩掉(byte)  | optimage压缩掉(byte)  | smush.it平均压缩百分比 | optimage平均压缩百分比 | smush.it总计压缩百分比 | optimage总计压缩百分比 |  
+| :---------        | :--------    | :---------            | :---------            | :---------             | :---------             | :---------             | :---------             |
+|gif(7)             | 862177       | 26780                 | 23327                 | 22.49%                 | 14.28%                 | 3.11%                  | 2.71%                  |
+|png(21)            | 108978       | 20544                 | 39633                 | 46.73%                 | 54.48%                 | 18.85%                 | 36.37%                 |
+|jpg(30)            | 2497858      | 156327                | 210469                | 3.48%                  | 11.6%                  | 6.26%                  |  8.43%                 |
+
+PS: `smush.it`的压缩服务会将`gif`格式转换成`png`格式再使用`pngcrush`工具压缩，所以压缩比会高于`optimage`方法。
