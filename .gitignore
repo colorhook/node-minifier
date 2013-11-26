@@ -5,3 +5,4 @@ npm-debug.log
 .exe
 performance/assets
 performance/temp
+performance/chrome

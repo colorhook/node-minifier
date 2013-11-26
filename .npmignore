@@ -4,3 +4,4 @@ npm-debug.log
 .DS_Store
 performance/assets
 performance/temp
+performance/chrome
