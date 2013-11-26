@@ -35,7 +35,8 @@
         "should": "~1.2.1"
     },
     "scripts":{
-        "test": "mocha --timeout 30000 --ignore-leaks --require should test"
+        "test": "mocha --timeout 30000 --ignore-leaks --require should test",
+        "preinstall": "npm cache clean node-advpng@0.0.2"
     },
     "homepage": "https://github.com/colorhook/att",
     "repository" : {
