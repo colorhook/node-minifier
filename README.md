@@ -57,11 +57,12 @@ var minifiedCSS = minifier.minifyCSS(csscontent);
 var minifiedHTML = minifier.minifyHTML(htmlcontent);
 ```
 
-> datauri
+> datauri，支持webp
 
 ```js
 var datauriCSS = minifier.datauri(csscontent);
 ```
+
 
 > 压缩图片
 
