@@ -23,7 +23,9 @@ npm install node-minifier
 var minifier = require('node-minifier');
 ```
 
-> 压缩JS
+JS压缩
+---------
+
 * 使用`UglifyJS2`进行压缩
 * 自动保留`/*! ... */`类型的注释
 * 保留`$`, `exports`, `require`, `define`不被替换
@@ -35,6 +37,8 @@ var minifier = require('node-minifier');
 //不要在console.log调用中改变逻辑，避免产生side effect
 var minifiedJS = minifier.minifyJS(jscontent, {
   expect: ['onMessageFromSWF'],
+  banner: '在文件头部加入的内容',
+  footer: '在文件尾部加入的内容',
   remove: ['console', 'Y.log', 'Kissy.log', 'S.log']
 });
 
@@ -45,26 +49,66 @@ this.minifyJS(jscontent, {
 });
 ```
 
-> 压缩CSS
+JSON压缩
+---------
+
+`minifyJSON`方法可以对JSON代码进行压缩或格式化
 
 ```js
-var minifiedCSS = minifier.minifyCSS(csscontent);
-```
-
-> 压缩HTML
-
-```js
-var minifiedHTML = minifier.minifyHTML(htmlcontent);
-```
-
-> datauri，支持webp
-
-```js
-var datauriCSS = minifier.datauri(csscontent);
+//压缩
+var minifiedJSON = minifier.minifyJSON(content);
+//格式化
+var formatJSON = minifier.minifyJSON(content, {indent: 2});
 ```
 
 
-> 压缩图片
+
+CSS压缩
+---------
+
+```js
+var minifiedCSS = minifier.minifyCSS(content);
+```
+
+HTML压缩
+---------
+
+```js
+var minifiedHTML = minifier.minifyHTML(content);
+```
+
+对CSS进行DataURI (支持webp格式)
+---------
+
+```js
+var datauriCSS = minifier.datauri(content, {
+  input: 'the-dir-of-css-file'
+});
+```
+
+如果CSS中定义了图片以绝对路径作为访问地址，需要额外定义绝对路径
+
+```css
+.btn{
+  background: url(/img/btn.png);
+}
+```
+
+```js
+var datauriCSS = minifier.datauri(content, {
+  input: 'the-dir-of-css-file',
+  workspace: '/var/www/home-website/static/img'
+});
+```
+
+
+
+图片压缩
+---------
+`minifyImage`方法会先尝试使用`optimage`方法压缩图片，如果失败，则降级到使用`smushit`方法压缩。
+
+* `optimage` - 使用本地的压缩工具压缩。
+* `smushit` - 使用[`smush.it`](http://smush.it/) API进行压缩。
 
 ```js
 minifier.minifyImage('logo.png', 'logo.min.png', function(e, data){
@@ -75,14 +119,6 @@ minifier.minifyImage('logo.png', 'logo.min.png', function(e, data){
   }
 });
 ```
-
-
-图片压缩
----------
-`minifyImage`方法会先尝试使用`optimage`方法压缩图片，如果失败，则降级到使用`smushit`方法压缩。
-
-* `optimage` - 使用本地的压缩工具压缩。
-* `smushit` - 使用[`smush.it`](http://smush.it/) API进行压缩。
 
 
 > 压缩jpg - 使用`jpegtran`压缩jpg

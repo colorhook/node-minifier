@@ -2,6 +2,7 @@ node_modules/
 npm-debug.log
 .svn
 .DS_Store
+performance
 performance/assets
 performance/temp
 performance/chrome

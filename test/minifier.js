@@ -96,7 +96,6 @@ describe('minifier is a minifier tool for frontend dev', function(){
     
     //默认压缩，去log，保留版权信息
     var m_content = minifier.minifyJS(content);
-    console.log(m_content);
     var noConsole = m_content.match(/console/) == null;
 
     noConsole.should.be.ok;
@@ -114,6 +113,18 @@ describe('minifier is a minifier tool for frontend dev', function(){
     noConsole = m_content.match(/\/\*![^(\*\/)]+\*\//) == null;
     noConsole.should.be.ok;
 
+  });
+  
+
+  it('minifyJS can custom banner & footer', function(){
+      var content = 'var a=1;';
+      var banner = 'define(function(require, exports, module){';
+      var footer = '});';
+      var realJS = minifier.minifyJS(content, {banner:banner, footer: footer});
+      var hasBanner = realJS.indexOf(banner) >= -1;
+      hasBanner.should.be.true;
+      var hasFooter = realJS.indexOf(footer) >= -1;
+      hasFooter.should.be.true;
   });
   
   it('minifyJS should keep the exports, define, require, $ keyword reserved.', function(){
@@ -140,6 +151,13 @@ describe('minifier is a minifier tool for frontend dev', function(){
     m_content = minifier.minifyJS(content);
   });
 
+  it('minifyJSON should minify json text', function(){
+    var content = '{"a":  "b", "c": \n [1, 2, 3]}';
+    var exceptContent = '{"a":"b","c":[1,2,3]}';
+    var realContent = minifier.minifyJSON(content);
+    (realContent == exceptContent).should.be.true;
+  });
+
   it("datauri should convert the image to Base64 in css files", function(){
     var file = __dirname + "/test.css";
     var content = minifier.datauri(fileutil.read(file), {
@@ -155,7 +173,6 @@ describe('minifier is a minifier tool for frontend dev', function(){
     var input  = __dirname + "/test.jpg";
     var output = __dirname + "/test.min.jpg";
     minifier.optimage(input, output, function(err, data){
-      console.log(data);
       fileutil.delete(output);
       data.should.be.a('object');
       (data.saved > 0).should.be.ok;
@@ -167,7 +184,6 @@ describe('minifier is a minifier tool for frontend dev', function(){
     var input  = __dirname + "/test.png";
     var output = __dirname + "/test.min.png";
     minifier.optimage(input, output, function(err, data){
-      console.log(data);
       fileutil.delete(output);
       data.should.be.a('object');
       (data.saved > 0).should.be.ok;
