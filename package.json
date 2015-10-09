@@ -1,6 +1,6 @@
 {
     "name": "node-minifier",
-    "version": "0.2.0",
+    "version": "0.3.0",
 	"description": "a minify tool",
     "keywords": ["minify", "js minifier", "css minifier", "image minifier", "html minifier", "css datauri"],
     "main": "lib/minifier.js",
@@ -28,7 +28,7 @@
         "gifsicle": "=0.1.2",
         "node-pngcrush": "*",
         "node-pngquant-native": "*",
-        "node-advpng": "~0.0.2"
+        "node-advpng": "~0.0.3"
     },
     "devDependencies":{
         "mocha": "~1.7.4",
